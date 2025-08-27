@@ -1,7 +1,6 @@
-import { useImmer, useImmerReducer } from "use-immer"
+import { useImmerReducer } from "use-immer"
 import NoteForm from "./NoteForm"
 import NoteList from "./NoteList"
-import { useReducer } from "react"
 import { NotesContext, NotesDispatchContext } from "./NoteContext"
 
 let id = 0

@@ -16,7 +16,10 @@
   "type": "commonjs",
   "dependencies": {
     "@prisma/client": "^6.15.0",
-    "express": "^5.1.0"
+    "docx": "^9.5.1",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "pdfkit": "^0.17.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.10",

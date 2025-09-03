@@ -1,4 +1,4 @@
-function successResponse(res, message, data = null, statusCode = 200) {
+export function successResponse(res, message, data = null, statusCode = 200) {
     return res.status(statusCode).json({
         success: true,
         message,
@@ -6,7 +6,7 @@ function successResponse(res, message, data = null, statusCode = 200) {
     })
 }
 
-function errorResponse(res, message, error = null, statusCode = 500) {
+export function errorResponse(res, message, error = null, statusCode = 500) {
     return res.status(statusCode).json({
         success: false,
         message,

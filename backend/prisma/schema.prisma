@@ -18,5 +18,64 @@ model User {
   id         Int      @id @default(autoincrement())
   name       String
   email      String   @unique
+  password   String
   created_at DateTime @default(now())
+
+  checklistSession ChecklistSession[]
+}
+
+model Area {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+
+  tasks Task[]
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  areaId      Int
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+
+  Area    Area              @relation(fields: [areaId], references: [id])
+  results ChecklistResult[]
+}
+
+model WorkSchedule {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  startTime DateTime
+  endTime   DateTime
+  createdAt DateTime @default(now())
+
+  checklistSessions ChecklistSession[]
+}
+
+model ChecklistSession {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  workScheduleId Int
+  startTime      DateTime
+  endTime        DateTime
+  notes          String?
+  createdAt      DateTime @default(now())
+
+  WorkSchedule WorkSchedule      @relation(fields: [workScheduleId], references: [id])
+  User         User              @relation(fields: [userId], references: [id])
+  results      ChecklistResult[]
+}
+
+model ChecklistResult {
+  id        Int      @id @default(autoincrement())
+  sessionId Int
+  taskId    Int
+  status    String
+  remarks   String?
+  checkedAt DateTime @default(now())
+
+  ChecklistSession ChecklistSession? @relation(fields: [sessionId], references: [id])
+  Task             Task              @relation(fields: [taskId], references: [id])
 }

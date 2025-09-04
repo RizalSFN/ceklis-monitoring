@@ -1,6 +1,6 @@
-import prisma from "../config/db"
+import prisma from "../config/db.js"
 import bcrypt from "bcrypt"
-import { errorResponse, successResponse } from "../utils/response"
+import { errorResponse, successResponse } from "../utils/response.js"
 
 export const register = async (req, res) => {
     try {

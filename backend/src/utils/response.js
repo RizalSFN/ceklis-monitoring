@@ -10,6 +10,6 @@ export function errorResponse(res, message, error = null, statusCode = 500) {
     return res.status(statusCode).json({
         success: false,
         message,
-        data
+        error
     })
 }

@@ -7,12 +7,12 @@ import {
     updateArea
 } from "../controllers/area.controller";
 
-const AreaRouter = express.Router()
+const areaRouter = express.Router()
 
-AreaRouter.post("/create", createArea)
-AreaRouter.get("/", getArea)
-AreaRouter.get("/:id", getAreaById)
-AreaRouter.put("/:id", updateArea)
-AreaRouter.delete("/:id", deleteArea)
+areaRouter.post("/create", createArea)
+areaRouter.get("/", getArea)
+areaRouter.get("/:id", getAreaById)
+areaRouter.put("/:id", updateArea)
+areaRouter.delete("/:id", deleteArea)
 
-export default AreaRouter
+export default areaRouter

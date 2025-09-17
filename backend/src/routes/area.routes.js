@@ -9,10 +9,10 @@ import {
 
 const AreaRouter = express.Router()
 
-AreaRouter.post("/area/create", createArea)
-AreaRouter.get("/area", getArea)
-AreaRouter.get("/area/:id", getAreaById)
-AreaRouter.put("/area/:id", updateArea)
-AreaRouter.delete("/area/:id", deleteArea)
+AreaRouter.post("/create", createArea)
+AreaRouter.get("/", getArea)
+AreaRouter.get("/:id", getAreaById)
+AreaRouter.put("/:id", updateArea)
+AreaRouter.delete("/:id", deleteArea)
 
 export default AreaRouter

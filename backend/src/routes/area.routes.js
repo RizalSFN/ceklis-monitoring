@@ -5,7 +5,7 @@ import {
     getArea,
     getAreaById,
     updateArea
-} from "../controllers/area.controller";
+} from "../controllers/area.controller.js";
 
 const areaRouter = express.Router()
 

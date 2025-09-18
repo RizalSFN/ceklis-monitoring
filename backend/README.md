@@ -26,7 +26,9 @@ Success:
 Error:
 {
     "success": false,
-    "message": "Username atau Password salah",
+    "message": "Username atau Password salah", // 401
+    "message": "User tidak ditemukan", //404
+    "message": "Login gagal", //500
     "error": ""
 }
 ```
@@ -57,7 +59,8 @@ Success:
 Error:
 {
     "success": false,
-    "message": "Email sudah dipakai",
+    "message": "Email sudah dipakai", //400
+    "message": "Registrasi user gagal", //500
     "error": ""
 }
 ```

@@ -4,7 +4,7 @@
 
 - Endpoint : /api/auth/login
 - Method : POST
-- Request Body :
+- Request Body (raw-JSON) :
 
 ```
 {
@@ -19,7 +19,7 @@
 Success:
 {
     "success": true,
-    "message": "Login berhasil",
+    "message": "Login berhasil", //200
     "data": ""
 }
 
@@ -37,7 +37,7 @@ Error:
 
 - Endpoint : /api/auth/register
 - Method : POST
-- Request Body :
+- Request Body (raw-JSON) :
 
 ```
 {
@@ -53,7 +53,7 @@ Error:
 Success:
 {
     "success": true,
-    "message": "Registrasi Berhasil!",
+    "message": "Registrasi Berhasil!", //200
     "data": ""
 }
 Error:

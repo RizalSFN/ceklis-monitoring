@@ -41,7 +41,7 @@ export const login = async (req, res) => {
 
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) {
-            return errorResponse(res, "Password salah", "", 401)
+            return errorResponse(res, "Username atau Password salah", "", 401)
         }
 
         return successResponse(res, "Login berhasil", "", 200)

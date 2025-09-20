@@ -53,10 +53,10 @@ export const getTaskById = async (req, res) => {
             }
         })
 
-        return successResponse(res, "Berhasil memuat data task", task, 200)
+        return successResponse(res, "Berhasil memuat data task!", task, 200)
 
     } catch (error) {
-        return errorResponse(res, "Gagal memuat data task", error.message, 500)
+        return errorResponse(res, "Gagal memuat data task!", error.message, 500)
     }
 }
 
@@ -76,9 +76,9 @@ export const getTaskByAreaId = async (req, res) => {
             }
         })
 
-        return successResponse(res, "Berhasil memuat data task", task, 200)
+        return successResponse(res, "Berhasil memuat data task!", task, 200)
 
     } catch (error) {
-        return errorResponse(res, "Gagal memuat data task", error.message, 500)
+        return errorResponse(res, "Gagal memuat data task!", error.message, 500)
     }
 }

@@ -18,3 +18,21 @@ export const createTask = async (req, res) => {
         return errorResponse(res, "Gagal membuat task baru!", error.message, 500)
     }
 }
+
+export const getTask = async (req, res) => {
+    try {
+        const task = await prisma.task.findMany({
+            select: {
+                id: true,
+                areaId: true,
+                name: true,
+                description: true
+            }
+        })
+
+        return successResponse(res, "Berhasil memuat data task!", task, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal memuat data task!", error.message, 500)
+    }
+}

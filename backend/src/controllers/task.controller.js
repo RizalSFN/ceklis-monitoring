@@ -100,9 +100,26 @@ export const updateTask = async (req, res) => {
             data
         })
 
-        return successResponse(res, "Berhasil mengubah data task", updateTask, 200)
+        return successResponse(res, "Berhasil mengubah data task!", updateTask, 200)
 
     } catch (error) {
         return errorResponse(res, "Gagal mengubah data task!", error.message, 500)
     }
 } 
+
+export const deleteTask = async (req, res) => {
+    try {
+        const {id} = req.params
+
+        await prisma.task.delete({
+            where: {
+                id: Number(id)
+            }
+        })
+
+        return successResponse(res, "Berhasil menghapus data task", null, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal menghapus data task!", error.message, 500)
+    }
+}

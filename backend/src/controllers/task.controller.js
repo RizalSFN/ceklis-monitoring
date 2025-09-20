@@ -82,3 +82,27 @@ export const getTaskByAreaId = async (req, res) => {
         return errorResponse(res, "Gagal memuat data task!", error.message, 500)
     }
 }
+
+export const updateTask = async (req, res) => {
+    try {
+        const { id } = req.params
+        const { areaId, name, description } = req.body
+
+        const data = {}
+        if (areaId) data.areaId = areaId
+        if (name) data.name = name
+        if (description) data.description = description
+
+        const updatedTask = await prisma.task.update({
+            where: {
+                id: Number(id)
+            },
+            data
+        })
+
+        return successResponse(res, "Berhasil mengubah data task", updateTask, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal mengubah data task!", error.message, 500)
+    }
+} 

@@ -24,7 +24,12 @@ export const getTask = async (req, res) => {
         const task = await prisma.task.findMany({
             select: {
                 id: true,
-                areaId: true,
+                area: {
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                },
                 name: true,
                 description: true
             }
@@ -47,7 +52,12 @@ export const getTaskById = async (req, res) => {
             },
             select: {
                 id: true,
-                areaId: true,
+                area: {
+                    select: {
+                        id: true,
+                        name: true,
+                    }
+                },
                 name: true,
                 description: true
             }
@@ -70,7 +80,12 @@ export const getTaskByAreaId = async (req, res) => {
             },
             select: {
                 id: true,
-                areaId: true,
+                area: {
+                    select: {
+                        id: true,
+                        name: true,
+                    }
+                },
                 name: true,
                 description: true
             }
@@ -105,11 +120,11 @@ export const updateTask = async (req, res) => {
     } catch (error) {
         return errorResponse(res, "Gagal mengubah data task!", error.message, 500)
     }
-} 
+}
 
 export const deleteTask = async (req, res) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
 
         await prisma.task.delete({
             where: {

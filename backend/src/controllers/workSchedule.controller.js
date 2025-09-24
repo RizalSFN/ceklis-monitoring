@@ -84,3 +84,20 @@ export const updateWorkSchedule = async (req, res) => {
         return errorResponse(res, "Gagal mengubah data!", error.message, 500)
     }
 }
+
+export const deleteWorkSchedule = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        await prisma.workSchedule.delete({
+            where: {
+                id: Number(id)
+            }
+        })
+
+        return successResponse(res, "Berhasil menghapus data!", null, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal menghapus data!", error.message, 500)
+    }
+}

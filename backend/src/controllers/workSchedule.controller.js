@@ -60,3 +60,27 @@ export const getWorkScheduleByDate = async (req, res) => {
         return errorResponse(res, "Gagal memuat data!", error.message, 500)
     }
 }
+
+export const updateWorkSchedule = async (req, res) => {
+    try {
+        const { id } = req.params
+        const { date, startTime, endTime } = req.body
+
+        const data = {}
+        if (date) data.date = date
+        if (startTime) data.startTime = startTime
+        if (endTime) data.endTime = endTime
+
+        const updatedWorkSchedule = await prisma.workSchedule.update({
+            where: {
+                id: Number(id)
+            },
+            data
+        })
+
+        return successResponse(res, "Berhasil mengubah data!", updatedWorkSchedule, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal mengubah data!", error.message, 500)
+    }
+}

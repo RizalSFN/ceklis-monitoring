@@ -5,15 +5,19 @@ export const createWorkSchedule = async (req, res) => {
     try {
         const { date, startTime, endTime } = req.body
 
+        if (!date || !startTime || !endTime) {
+            return errorResponse(res, "Semua field wajib diisi", null, 400)
+        }
+
         const newWorkSchedule = await prisma.workSchedule.create({
             data: {
-                date: date,
+                date: new Date(date),
                 startTime: startTime,
                 endTime: endTime
             }
         })
 
-        return successResponse(res, "Berhasil membuat data work schedule!", newWorkSchedule, 200)
+        return successResponse(res, "Berhasil membuat data work schedule!", newWorkSchedule, 201)
 
     } catch (error) {
         return errorResponse(res, "Gagal membuat data work schedule!", error.message, 500)

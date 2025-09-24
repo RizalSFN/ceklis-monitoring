@@ -13,9 +13,27 @@ export const createWorkSchedule = async (req, res) => {
             }
         })
 
-        return successResponse(res, "Berhasil membuat data work schedule!", 200)
+        return successResponse(res, "Berhasil membuat data work schedule!", newWorkSchedule, 200)
 
     } catch (error) {
         return errorResponse(res, "Gagal membuat data work schedule!", error.message, 500)
+    }
+}
+
+export const getWorkSchedule = async (req, res) => {
+    try {
+        const workSchedule = await prisma.workSchedule.findMany({
+            select: {
+                id: true,
+                date: true,
+                startTime: true,
+                endTime: true
+            }
+        })
+
+        return successResponse(res, "Berhasil memuat data!", workSchedule, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal memuat data!", error.message, 500)
     }
 }

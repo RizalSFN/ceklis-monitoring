@@ -5,6 +5,10 @@ export const createTask = async (req, res) => {
     try {
         const { areaId, name, description } = req.body
 
+        if (!areaId || !name) {
+            return errorResponse(res, "Semua field harus diisi!", null, 400)
+        }
+
         const newTask = await prisma.task.create({
             data: {
                 areaId,
@@ -13,7 +17,7 @@ export const createTask = async (req, res) => {
             }
         })
 
-        return successResponse(res, "Berhasil membuat task baru!", newTask, 200)
+        return successResponse(res, "Berhasil membuat task baru!", newTask, 201)
     } catch (error) {
         return errorResponse(res, "Gagal membuat task baru!", error.message, 500)
     }

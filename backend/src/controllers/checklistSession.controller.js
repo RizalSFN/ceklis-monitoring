@@ -92,3 +92,39 @@ export const getChecklistSessionById = async (req, res) => {
         return errorResponse(res, "Gagal memuat data checklist session!", error.message, 500)
     }
 }
+
+export const getChecklistSessionByWorkScheduleId = async (req, res) => {
+    try {
+        const { workScheduleId } = req.params
+
+        const checklistSession = await prisma.checklistSession.findUnique({
+            where: {
+                workScheduleId: workScheduleId
+            },
+            select: {
+                id: true,
+                User: {
+                    select: {
+                        name: true
+                    }
+                },
+                WorkSchedule: {
+                    select: {
+                        id: true,
+                        date: true,
+                        startTime: true,
+                        endTime: true
+                    }
+                },
+                startTime: true,
+                endTime: true,
+                notes: true
+            }
+        })
+
+        return successResponse(res, "Berhasil memuat data checklist session!", checklistSession, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal memuat data checklist session!", error.message, 500)
+    }
+}

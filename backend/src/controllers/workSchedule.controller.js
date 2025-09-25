@@ -68,10 +68,9 @@ export const getWorkScheduleByDate = async (req, res) => {
 export const updateWorkSchedule = async (req, res) => {
     try {
         const { id } = req.params
-        const { date, startTime, endTime } = req.body
+        const { startTime, endTime } = req.body
 
         const data = {}
-        if (date) data.date = date
         if (startTime) data.startTime = startTime
         if (endTime) data.endTime = endTime
 

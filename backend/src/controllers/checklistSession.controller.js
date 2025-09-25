@@ -152,3 +152,20 @@ export const updateChecklistSession = async (req, res) => {
         return errorResponse(res, "Gagal mengubah data checklist session!", error.message, 500)
     }
 }
+
+export const deleteChecklistSession = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        await prisma.checklistSession.delete({
+            where: {
+                id: Number(id)
+            }
+        })
+
+        return successResponse(res, "Berhasil menghapus data checklist session", null, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal menghapus data checklist session!", error.message, 500)
+    }
+}

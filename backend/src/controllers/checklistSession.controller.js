@@ -43,7 +43,10 @@ export const getChecklistSession = async (req, res) => {
                         startTime: true,
                         endTime: true
                     }
-                }
+                },
+                startTime: true,
+                endTime: true,
+                notes: true
             }
         })
 

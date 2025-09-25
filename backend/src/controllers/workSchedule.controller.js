@@ -3,9 +3,9 @@ import { successResponse, errorResponse } from "../utils/response.js";
 
 export const createWorkSchedule = async (req, res) => {
     try {
-        const { date, startTime, endTime } = req.body
+        const { startTime, endTime } = req.body
 
-        if (!date || !startTime || !endTime) {
+        if (!startTime || !endTime) {
             return errorResponse(res, "Semua field wajib diisi", null, 400)
         }
 

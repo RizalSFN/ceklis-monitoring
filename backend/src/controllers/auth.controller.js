@@ -7,6 +7,13 @@ export const register = async (req, res) => {
 
         const { name, email, password } = req.body
 
+        if (!name || !email || !password) {
+            if (name === "" || email === "" || password === "") {
+                return errorResponse(res, "Semua field harus terisi", null, 400)
+            }
+            return errorResponse(res, "Semua field harus terisi", null, 400)
+        }
+
         const existingUser = await prisma.user.findUnique({ where: { email: email } })
         if (existingUser) {
             return errorResponse(res, "Email sudah dipakai", "", 400)
@@ -22,7 +29,7 @@ export const register = async (req, res) => {
             }
         })
 
-        return successResponse(res, "Registrasi berhasil", "", 200)
+        return successResponse(res, "Registrasi berhasil", "", 201)
 
     } catch (error) {
         return errorResponse(res, "Registrasi user gagal", error.message, 500)

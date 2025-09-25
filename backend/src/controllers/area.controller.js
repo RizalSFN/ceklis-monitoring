@@ -5,6 +5,10 @@ export const createArea = async (req, res) => {
     try {
         const { name, description } = req.body
 
+        if (!name || name === "") {
+            return errorResponse(res, "Field name harus diisi!", null, 400)
+        }
+
         const newArea = await prisma.area.create({
             data: {
                 name,
@@ -12,7 +16,7 @@ export const createArea = async (req, res) => {
             }
         })
 
-        return successResponse(res, "Berhasil menambah area!", newArea, 200)
+        return successResponse(res, "Berhasil menambah area!", newArea, 201)
 
     } catch (error) {
         return errorResponse(res, "Gagal membuat data area!", error.message, 500)
@@ -74,7 +78,7 @@ export const updateArea = async (req, res) => {
             data
         })
 
-        return successResponse(res, "Berhasil mengupdate data area!", 200)
+        return successResponse(res, "Berhasil mengupdate data area!", area, 200)
 
     } catch (error) {
         return errorResponse(res, "Gagal mengupdate data area!", error.message, 500)

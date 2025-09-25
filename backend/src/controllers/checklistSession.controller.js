@@ -25,3 +25,31 @@ export const createChecklistSession = async (req, res) => {
         return errorResponse(res, "Gagal membuat data checklist session!", error.message, 500)
     }
 }
+
+export const getChecklistSession = async (req, res) => {
+    try {
+        const checklistSession = await prisma.checklistSession.findMany({
+            select: {
+                id: true,
+                User: {
+                    select: {
+                        id: true
+                    }
+                },
+                WorkSchedule: {
+                    select: {
+                        id: true,
+                        date: true,
+                        startTime: true,
+                        endTime: true
+                    }
+                }
+            }
+        })
+
+        return successResponse(res, "Berhasil memuat data checklist session!", checklistSession, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal memuat data checklist session!", error.message, 500)
+    }
+}

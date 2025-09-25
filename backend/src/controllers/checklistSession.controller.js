@@ -128,3 +128,27 @@ export const getChecklistSessionByWorkScheduleId = async (req, res) => {
         return errorResponse(res, "Gagal memuat data checklist session!", error.message, 500)
     }
 }
+
+export const updateChecklistSession = async (req, res) => {
+    try {
+        const { id } = req.params
+        const { startTime, endTime, notes } = req.body
+
+        const data = {}
+        if (startTime) data.startTime = startTime
+        if (endTime) data.endTime = endTime
+        if (notes) data.notes = notes
+
+        const updatedChecklistSession = await prisma.checklistSession.update({
+            where: {
+                id: Number(id)
+            },
+            data
+        })
+
+        return successResponse(res, "Berhasil mengubah data checklist session!", updatedChecklistSession, 200)
+
+    } catch (error) {
+        return errorResponse(res, "Gagal mengubah data checklist session!", error.message, 500)
+    }
+}

@@ -90,11 +90,11 @@ export const getChecklistResultById = async (req, res) => {
 
 export const getChecklistResultBySessionId = async (req, res) => {
     try {
-        const { id } = req.params
+        const { sessionId } = req.params
 
         const checklistResult = await prisma.checklistResult.findUnique({
             where: {
-                sessionId: id
+                sessionId: sessionId
             },
             select: {
                 id: true,

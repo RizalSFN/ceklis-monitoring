@@ -121,3 +121,25 @@ export const getChecklistResultByTaskId = async (req, res) => {
         return errorResponse(res, "Gagal memuat data checklist result", error.message, 500)
     }
 }
+
+export const updateChecklistResult = async (req, res) => {
+    try {
+        const { id } = req.params
+        const { status, remarks } = req.body
+
+        const data = {}
+        if (status) data.status = status
+        if (remarks) data.remarks = remarks
+
+        const updatedChecklistResult = await prisma.checklistResult.update({
+            where: {
+                id: Number(id)
+            },
+            data
+        })
+
+        return successResponse(res, "Berhasil mengubah data checklist result", updatedChecklistResult, 200)
+    } catch (error) {
+        return errorResponse(res, "Gagal mengubah data checklist result", error.message, 500)
+    }
+}

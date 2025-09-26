@@ -143,3 +143,19 @@ export const updateChecklistResult = async (req, res) => {
         return errorResponse(res, "Gagal mengubah data checklist result", error.message, 500)
     }
 }
+
+export const deleteChecklistResult = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        await prisma.checklistResult.delete({
+            where: {
+                id: Number(id)
+            }
+        })
+
+        return successResponse(res, "Berhasil menghapus data checklist result", null, 200)
+    } catch (error) {
+        return errorResponse(res, "Gagal menghapus data checklist result", error.message, 500)
+    }
+}

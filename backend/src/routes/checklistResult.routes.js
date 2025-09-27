@@ -7,7 +7,7 @@ import {
     getChecklistResultByTaskId,
     updateChecklistResult,
     deleteChecklistResult
-} from "../controllers/checklistResult.controller";
+} from "../controllers/checklistResult.controller.js";
 
 const checklistResultRouter = express.Router()
 

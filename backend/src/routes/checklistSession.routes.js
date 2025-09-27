@@ -6,7 +6,7 @@ import {
     getChecklistSessionByWorkScheduleId,
     updateChecklistSession,
     deleteChecklistSession
-} from "../controllers/checklistSession.controller";
+} from "../controllers/checklistSession.controller.js";
 
 const checklistSessionRouter = express.Router()
 

@@ -16,7 +16,7 @@ export default function Login() {
         setErrorMsg("")
 
         try {
-            const res = await api.post("/auth/login", { email, password })
+            const res = await api.post("/api/auth/login", { email, password })
 
             if (res.data.success) {
                 localStorage.setItem("user", JSON.stringify(res.data.data))

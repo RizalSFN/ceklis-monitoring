@@ -1,4 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import login from "./pages/Login.jsx";
+import Login from "./pages/Login.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
-function dashboard
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
+
+export default App

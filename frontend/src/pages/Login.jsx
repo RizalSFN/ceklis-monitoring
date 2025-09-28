@@ -1,15 +1,16 @@
 import { useState } from "react";
 import api from "../api/axios.js";
 import { useNavigate } from 'react-router-dom'
+import logo from "../assets/bagikopi.png"
 
-export default function login() {
+export default function Login() {
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
         setLoading(true)
         setErrorMsg("")
@@ -22,7 +23,9 @@ export default function login() {
 
                 navigate("/dashboard")
             } else {
-                setErrorMsg(res.data.message || "Login gagal!")
+                console.log(res.message);
+
+                setErrorMsg(res.message || "Login gagal!")
             }
 
         } catch (error) {
@@ -33,42 +36,81 @@ export default function login() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+        <div className="flex min-h-screen items-center justify-center px-6 py-12">
+            <div className="w-full max-w-md">
+                <img
+                    alt="Your Company"
+                    src={logo}
+                    className="mx-auto h-20 w-auto"
+                />
+                <h1 className="font-bold text-3xl text-center my-5 tracking-wider">Bagi Kopi</h1>
+
+
                 {errorMsg && (
-                    <div className="mb-4 p-3 bg-red-100 text-red-600 rounded">
+                    <div className="mb-4 p-3 font-semibold tracking-wide bg-red-200 text-red-600 rounded">
                         {errorMsg}
                     </div>
                 )}
 
-                <form onSubmit={handleLogin} className="space-y-4">
+                <form onSubmit={handleLogin} className="mt-10 space-y-6">
                     <div>
-                        <label className="block mb-1 font-medium">Email</label>
-                        <input
-                            type="email"
-                            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)} required />
+                        <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
+                            Email address
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                autoComplete="email"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-400 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            />
+                        </div>
                     </div>
 
                     <div>
-                        <label className="block mb-1 font-medium">Password</label>
-                        <input
-                            type="password"
-                            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} required />
+                        <div className="flex items-center justify-between">
+                            <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
+                                Password
+                            </label>
+                            <div className="text-sm">
+                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                    Forgot password?
+                                </a>
+                            </div>
+                        </div>
+                        <div className="mt-2">
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                autoComplete="current-password"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-400 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            />
+                        </div>
                     </div>
 
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
-                        disabled={loading}
-                    >
-                        {loading ? "Loading..." : "Login"}
-                    </button>
+                    <div>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            {loading ? "Loading..." : "Login"}
+                        </button>
+                    </div>
                 </form>
+
+                <p className="mt-10 text-center text-sm/6 text-gray-500">
+                    Copyright@
+                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                        2025
+                    </a>
+                </p>
             </div>
         </div>
     )

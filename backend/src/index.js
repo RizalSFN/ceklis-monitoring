@@ -1,4 +1,5 @@
 import express from "express"
+import cors from 'cors'
 import userRouter from "./routes/user.routes.js"
 import authRouter from "./routes/auth.routes.js"
 import areaRouter from "./routes/area.routes.js"
@@ -7,6 +8,13 @@ import checklistSessionRouter from "./routes/checklistSession.routes.js"
 import checklistResultRouter from "./routes/checklistResult.routes.js"
 
 const app = express()
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}))
+
 app.use(express.json())
 
 app.use("/api/users", userRouter)

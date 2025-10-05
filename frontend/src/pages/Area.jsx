@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Pencil, Trash2, Plus } from "lucide-react";
 
 function Area() {
-    const [users, setUsers] = useState([
+    const [area, setArea] = useState([
         { id: 1, name: "Rizal Sofiana", email: "rizal@example.com", role: "Admin" },
         { id: 2, name: "Budi Santoso", email: "budi@example.com", role: "User" },
         { id: 3, name: "Siti Aminah", email: "siti@example.com", role: "User" },
@@ -14,7 +14,7 @@ function Area() {
 
     const handleDelete = (id) => {
         if (confirm("Yakin mau hapus user ini?")) {
-            setUsers(users.filter((u) => u.id !== id));
+            setArea(area.filter((u) => u.id !== id));
         }
     };
 
@@ -46,22 +46,22 @@ function Area() {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.length > 0 ? (
-                            users.map((user, index) => (
-                                <tr key={user.id} className="border-b hover:bg-gray-50">
+                        {area.length > 0 ? (
+                            area.map((area, index) => (
+                                <tr key={area.id} className="border-b hover:bg-gray-50">
                                     <td className="px-4 py-3">{index + 1}</td>
-                                    <td className="px-4 py-3">{user.name}</td>
-                                    <td className="px-4 py-3">{user.email}</td>
-                                    <td className="px-4 py-3">{user.role}</td>
+                                    <td className="px-4 py-3">{area.name}</td>
+                                    <td className="px-4 py-3">{area.email}</td>
+                                    <td className="px-4 py-3">{area.role}</td>
                                     <td className="px-4 py-3 flex items-center gap-3 justify-center">
                                         <button
-                                            onClick={() => handleEdit(user.id)}
+                                            onClick={() => handleEdit(area.id)}
                                             className="text-blue-500 hover:text-blue-700"
                                         >
                                             <Pencil className="w-5 h-5" />
                                         </button>
                                         <button
-                                            onClick={() => handleDelete(user.id)}
+                                            onClick={() => handleDelete(area.id)}
                                             className="text-red-500 hover:text-red-700"
                                         >
                                             <Trash2 className="w-5 h-5" />
@@ -75,7 +75,7 @@ function Area() {
                                     colSpan="5"
                                     className="text-center text-gray-500 py-6 italic"
                                 >
-                                    Belum ada data user
+                                    Belum ada data area
                                 </td>
                             </tr>
                         )}

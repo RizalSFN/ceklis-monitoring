@@ -3,9 +3,9 @@ import {
     Menu,
     X,
     Home,
-    Users,
-    FileText,
+    ClipboardList,
     Settings,
+    MapPinned,
 } from "lucide-react";
 import logo from "../assets/bagikopi.png"
 import { Link } from "react-router-dom";
@@ -15,8 +15,8 @@ function Dashboard() {
 
     const menus = [
         { name: "Dashboard", path: "/dashboard", icon: <Home className="w-5 h-5" /> },
-        { name: "Users", path: "/users", icon: <Users className="w-5 h-5" /> },
-        { name: "Reports", path: "/reports", icon: <FileText className="w-5 h-5" /> },
+        { name: "Area", path: "/area", icon: <MapPinned className="w-5 h-5" /> },
+        { name: "Task", path: "/task", icon: <ClipboardList className="w-5 h-5" /> },
         { name: "Settings", path: "/settings", icon: <Settings className="w-5 h-5" /> },
     ];
 
@@ -95,12 +95,12 @@ function Dashboard() {
                             <p className="text-2xl text-blue-600 font-bold mt-2">6</p>
                         </div>
                         <div className="bg-white shadow rounded-lg p-4 text-center">
-                            <h3 className="text-lg font-semibold text-gray-700">Reports</h3>
+                            <h3 className="text-lg font-semibold text-gray-700">Total Task</h3>
                             <p className="text-2xl text-blue-600 font-bold mt-2">34</p>
                         </div>
                         <div className="bg-white shadow rounded-lg p-4 text-center">
-                            <h3 className="text-lg font-semibold text-gray-700">Sales</h3>
-                            <p className="text-2xl text-blue-600 font-bold mt-2">$5,240</p>
+                            <h3 className="text-lg font-semibold text-gray-700">Task Completed</h3>
+                            <p className="text-2xl text-blue-600 font-bold mt-2">20</p>
                         </div>
                         <div className="bg-white shadow rounded-lg p-4 text-center">
                             <h3 className="text-lg font-semibold text-gray-700">Feedback</h3>

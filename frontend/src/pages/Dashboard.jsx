@@ -1,49 +1,14 @@
 import { useState } from "react";
-import {
-    Menu,
-    X,
-    Home,
-    ClipboardList,
-    Settings,
-    MapPinned,
-} from "lucide-react";
-import logo from "../assets/bagikopi.png"
-import { Link } from "react-router-dom";
+import Sidebar from "../layouts/Sidebar";
+import Navbar from "../layouts/Navbar";
 
 function Dashboard() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    const menus = [
-        { name: "Dashboard", path: "/dashboard", icon: <Home className="w-5 h-5" /> },
-        { name: "Area", path: "/area", icon: <MapPinned className="w-5 h-5" /> },
-        { name: "Task", path: "/task", icon: <ClipboardList className="w-5 h-5" /> },
-        { name: "Settings", path: "/settings", icon: <Settings className="w-5 h-5" /> },
-    ];
-
     return (
         <div className="flex h-screen bg-gray-100">
             {/* Sidebar */}
-            <div
-                className={`fixed inset-y-0 left-0 z-30 w-64 transform bg-white shadow-lg transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:inset-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
-                    }`}
-            >
-                <div className="flex items-center justify-center h-160 text-blue-600 font-bold text-lg mt-5">
-                    <img src={logo} alt="bagikopi-logo" className="w-7 h-7 mr-3" />
-                    <p>Bagi Kopi</p>
-                </div>
-                <nav className="mt-5">
-                    {menus.map((menu, i) => (
-                        <Link
-                            key={i}
-                            to={menu.path}
-                            className="flex items-center px-6 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition"
-                        >
-                            {menu.icon}
-                            <span className="ml-3">{menu.name}</span>
-                        </Link>
-                    ))}
-                </nav>
-            </div>
+            <Sidebar sidebarOpen={sidebarOpen} />
 
             {/* Overlay Mobile */}
             {sidebarOpen && (
@@ -52,34 +17,10 @@ function Dashboard() {
                     onClick={() => setSidebarOpen(false)}
                 />
             )}
-
             {/* Main Content */}
             <div className="flex-1 flex flex-col">
                 {/* Navbar */}
-                <header className="flex items-center justify-between bg-white h-16 px-4 shadow-md">
-                    <div className="flex items-center">
-                        <button
-                            className="md:hidden text-gray-700"
-                            onClick={() => setSidebarOpen(!sidebarOpen)}
-                        >
-                            {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                        </button>
-                        <h1 className="hidden md:block text-xl font-semibold text-blue-600 ml-4">
-                            Dashboard
-                        </h1>
-                    </div>
-
-                    <div className="flex items-center space-x-3">
-                        <img
-                            src="https://i.pravatar.cc/40"
-                            alt="Profile"
-                            className="w-9 h-9 rounded-full"
-                        />
-                        <span className="hidden sm:block font-medium text-gray-700">
-                            Admin User
-                        </span>
-                    </div>
-                </header>
+                <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
                 {/* Content */}
                 <main className="flex-1 p-6 overflow-y-auto">

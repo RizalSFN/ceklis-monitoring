@@ -3,9 +3,7 @@ import { Pencil, Trash2, Plus } from "lucide-react";
 
 function Area() {
     const [area, setArea] = useState([
-        { id: 1, name: "Rizal Sofiana", email: "rizal@example.com", role: "Admin" },
-        { id: 2, name: "Budi Santoso", email: "budi@example.com", role: "User" },
-        { id: 3, name: "Siti Aminah", email: "siti@example.com", role: "User" },
+        { id: 1,  },
     ]);
 
     const handleEdit = (id) => {

@@ -3,21 +3,19 @@ import { Pencil, Trash2, Plus } from "lucide-react";
 
 function Area() {
     const [area, setArea] = useState([
-        { id: 1,  },
+        { id: 1, },
     ]);
 
     const handleEdit = (id) => {
-        alert(`Edit user dengan id: ${id}`);
+        //
     };
 
     const handleDelete = (id) => {
-        if (confirm("Yakin mau hapus user ini?")) {
-            setArea(area.filter((u) => u.id !== id));
-        }
+        //
     };
 
     const handleAdd = () => {
-        alert("Fitur tambah user dipanggil");
+        //
     };
 
     return (

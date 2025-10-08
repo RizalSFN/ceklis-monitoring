@@ -6,7 +6,7 @@ import {
     ClipboardList,
     Settings,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar({ sidebarOpen }) {
     const menus = [
@@ -15,6 +15,8 @@ export default function Sidebar({ sidebarOpen }) {
         { name: "Task", path: "/task", icon: <ClipboardList className="w-5 h-5" /> },
         { name: "Settings", path: "/settings", icon: <Settings className="w-5 h-5" /> },
     ];
+
+    const location = useLocation();
 
     return (
         <>
@@ -27,16 +29,23 @@ export default function Sidebar({ sidebarOpen }) {
                     <p>Bagi Kopi</p>
                 </div>
                 <nav className="mt-5">
-                    {menus.map((menu, i) => (
-                        <Link
-                            key={i}
-                            to={menu.path}
-                            className="flex items-center px-6 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition"
-                        >
-                            {menu.icon}
-                            <span className="ml-3">{menu.name}</span>
-                        </Link>
-                    ))}
+                    {menus.map((menu, i) => {
+                        const isActive = location.pathname === menu.path;
+
+                        return (
+                            <Link
+                                key={i}
+                                to={menu.path}
+                                className={`flex items-center px-6 py-3 transition ${isActive
+                                    ? "bg-blue-100 text-blue-600 font-semibold"
+                                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600"
+                                    }`}
+                            >
+                                {menu.icon}
+                                <span className="ml-3">{menu.name}</span>
+                            </Link>
+                        );
+                    })}
                 </nav>
             </div>
         </>

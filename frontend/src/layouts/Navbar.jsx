@@ -2,6 +2,7 @@ import React from "react";
 import {
     Menu,
     X,
+    CircleUser,
 } from "lucide-react";
 
 export default function Navbar({ sidebarOpen, setSidebarOpen }) {
@@ -14,17 +15,13 @@ export default function Navbar({ sidebarOpen, setSidebarOpen }) {
                 >
                     {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
-                <h1 className="hidden md:block text-xl font-semibold text-blue-600 ml-4">
+                {/* <h1 className="hidden md:block text-xl font-semibold text-blue-600 ml-4">
                     Dashboard
-                </h1>
+                </h1> */}
             </div>
 
             <div className="flex items-center space-x-3">
-                <img
-                    src="https://i.pravatar.cc/40"
-                    alt="Profile"
-                    className="w-9 h-9 rounded-full"
-                />
+                <CircleUser className="w-6 h-6" />
                 <span className="hidden sm:block font-medium text-gray-700">
                     Admin User
                 </span>

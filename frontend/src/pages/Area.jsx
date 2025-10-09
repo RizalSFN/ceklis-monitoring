@@ -3,13 +3,13 @@ import { Pencil, Trash2 } from "lucide-react";
 import Layout from "../layouts/Layout";
 
 function Area() {
-    const [area, setArea] = useState([
+    const area = [
         { id: 1, name: "toilet", description: "area toilet" },
         { id: 1, name: "toilet", description: "area toilet" },
         { id: 1, name: "toilet", description: "area toilet" },
         { id: 1, name: "toilet", description: "area toilet" },
         { id: 1, name: "toilet", description: "area toilet" },
-    ]);
+    ]
 
     const [isCreateOpen, setIsCreateOpen] = useState(false)
     const [isEditOpen, setIsEditOpen] = useState(false)
@@ -89,7 +89,7 @@ function Area() {
                     </table>
                 </div>
             </div> */}
-            <h1 className="text-2xl font-bold mb-6 text-blue-600">Manajemen Area</h1>
+            <h1 className="text-2xl font-bold mb-6 text-gray-800">Manajemen Area</h1>
 
             <div className="bg-white rounded-lg shadow-md p-4">
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-4">

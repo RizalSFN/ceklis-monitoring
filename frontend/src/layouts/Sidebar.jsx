@@ -4,7 +4,8 @@ import {
     Home,
     MapPinned,
     ClipboardList,
-    Settings,
+    ClipboardCheck,
+    NotebookPen,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -13,7 +14,8 @@ export default function Sidebar({ sidebarOpen }) {
         { name: "Dashboard", path: "/dashboard", icon: <Home className="w-5 h-5" /> },
         { name: "Area", path: "/area", icon: <MapPinned className="w-5 h-5" /> },
         { name: "Task", path: "/task", icon: <ClipboardList className="w-5 h-5" /> },
-        { name: "Settings", path: "/settings", icon: <Settings className="w-5 h-5" /> },
+        { name: "Checklist", path: "/checklist", icon: <ClipboardCheck className="w-5 h-5" /> },
+        { name: "Report", path: "/report", icon: <NotebookPen className="w-5 h-5" /> },
     ];
 
     const location = useLocation();

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import Layout from "../layouts/Layout";
 import api from "../api/axios";
+import Swal from "sweetalert2"
 
 function Area() {
     const [area, setArea] = useState([])
@@ -21,7 +22,7 @@ function Area() {
             setArea(res.data.data)
 
         } catch (error) {
-            console.log("gagal fetch area: ", error);
+            Swal.fire("Gagal!", "Gagal memuat data area", "error")
         } finally {
             setIsLoading(false)
         }
@@ -39,9 +40,11 @@ function Area() {
             setIsCreateOpen(false)
             setName("")
             setDescription("")
+
+            Swal.fire("Berhasil!", "Berhasil menambahkan data area", "success")
             fetchArea()
         } catch (error) {
-            console.log("gagal menambah area: ", error);
+            Swal.fire("Gagal!", "Gagal menambahkan data area", "error")
         }
     }
 

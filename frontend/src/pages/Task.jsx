@@ -85,7 +85,7 @@ function Task() {
                                     <input
                                         id="name"
                                         type="text"
-                                        placeholder="Masukkan nama area"
+                                        placeholder="Masukkan nama tugas"
                                         required
                                         className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                     />
@@ -101,7 +101,7 @@ function Task() {
                                     <input
                                         id="description"
                                         type="text"
-                                        placeholder="Masukkan deskripsi area"
+                                        placeholder="Masukkan deskripsi tugas"
                                         required
                                         className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                     />
@@ -200,7 +200,7 @@ function Task() {
                                         <input
                                             id="name"
                                             type="text"
-                                            placeholder="Masukkan nama area"
+                                            placeholder="Masukkan nama tugas"
                                             required
                                             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                         />
@@ -216,7 +216,7 @@ function Task() {
                                         <input
                                             id="description"
                                             type="text"
-                                            placeholder="Masukkan deskripsi area"
+                                            placeholder="Masukkan deskripsi tugas"
                                             required
                                             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                         />

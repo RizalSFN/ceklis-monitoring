@@ -3,17 +3,21 @@ import { Pencil, Trash2 } from "lucide-react";
 import Layout from "../layouts/Layout";
 
 function Task() {
-    const task = [
-        { id: 1, areaId: 2, name: "toilet", description: "area toilet" },
-        { id: 1, areaId: 2, name: "toilet", description: "area toilet" },
-        { id: 1, areaId: 2, name: "toilet", description: "area toilet" },
-        { id: 1, areaId: 2, name: "toilet", description: "area toilet" },
-        { id: 1, areaId: 2, name: "toilet", description: "area toilet" },
-    ]
-
+    // const [task, setTask] = useState([])
+    const [areaId, setAreaId] = useState(null)
+    const [name, setName] = useState("")
+    const [description, setDescription] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
     const [isCreateOpen, setIsCreateOpen] = useState(false)
     const [isEditOpen, setIsEditOpen] = useState(false)
     const [isConfirmDelete, setIsConfirmDelete] = useState(false)
+
+    const task = [
+        { id: 1, areaId: 5, name: "sabun", description: "isi sabun" },
+        { id: 1, areaId: 5, name: "lantai", description: "pel lantai" },
+        { id: 1, areaId: 3, name: "meja", description: "bersihkan meja" },
+        { id: 1, areaId: 3, name: "piring", description: "cuci piring" },
+    ]
 
     // const handleEdit = (id) => {
     //     alert(`Edit user dengan id: ${id}`);

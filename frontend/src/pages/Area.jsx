@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import Layout from "../layouts/Layout";
 import api from "../api/axios";
@@ -12,6 +12,7 @@ function Area() {
     const [isLoading, setIsLoading] = useState(false)
     const [isCreateOpen, setIsCreateOpen] = useState(false)
     const [isEditOpen, setIsEditOpen] = useState(false)
+    const [isDeleteOpen, setIsDeleteOpen] = useState(false)
     const [isConfirmDelete, setIsConfirmDelete] = useState(false)
 
     const fetchArea = async () => {
@@ -46,6 +47,42 @@ function Area() {
         } catch (error) {
             Swal.fire("Gagal!", "Gagal menambahkan data area", "error")
         }
+    }
+
+    const handleEdit = async (area) => {
+        setEditId(area.id)
+        setName(area.name)
+        setDescription(area.description)
+        setIsEditOpen(true)
+    }
+
+    const handleUpdate = async (e) => {
+        e.preventDefault()
+
+        try {
+            await api.put(`/api/area/${editId}`, { name, description })
+            setIsEditOpen(false)
+            setEditId(null)
+
+            Swal.fire("Berhasil!", "Berhasil mengedit data area", "success")
+            fetchArea()
+        } catch (error) {
+            Swal.fire("Gagal!", "Gagal mengedit data area", "error")
+        }
+    }
+
+    const handleDelete = async () => {
+        try {
+            await api.delete(`/api/area/${editId}`)
+            setIsDeleteOpen(false)
+            setEditId(null)
+
+            Swal.fire("Berhasil!", "Berhasil menghapus data area", "success")
+            fetchArea()
+        } catch (error) {
+            Swal.fire("Gagal!", "Gagal menghapus data area", "error")
+        }
+
     }
 
     return (
@@ -217,12 +254,15 @@ function Area() {
                                         <td className="p-3">{u.description}</td>
                                         <td className="p-3 flex justify-center gap-2">
                                             <button
-                                                onClick={() => setIsEditOpen(true)}
+                                                onClick={() => handleEdit(u)}
                                                 className="px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">
                                                 <Pencil className="w-4 h-4" />
                                             </button>
                                             <button
-                                                onClick={() => setIsConfirmDelete(true)}
+                                                onClick={() => {
+                                                    setIsDeleteOpen(true)
+                                                    setEditId(u.id)
+                                                }}
                                                 className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
@@ -240,7 +280,7 @@ function Area() {
                                         Edit Data Area
                                     </h2>
 
-                                    <form onSubmit={handleAdd} className="space-y-4">
+                                    <form onSubmit={handleUpdate} className="space-y-4">
                                         <div>
                                             <label
                                                 htmlFor="name"
@@ -252,6 +292,8 @@ function Area() {
                                                 id="name"
                                                 type="text"
                                                 placeholder="Masukkan nama area"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
                                                 required
                                                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                             />
@@ -268,6 +310,8 @@ function Area() {
                                                 id="description"
                                                 type="text"
                                                 placeholder="Masukkan deskripsi area"
+                                                value={description}
+                                                onChange={(e) => setDescription(e.target.value)}
                                                 required
                                                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                             />
@@ -294,24 +338,27 @@ function Area() {
                         )}
 
                         {/* pop up konfirmasi delete */}
-                        {isConfirmDelete && (
+                        {isDeleteOpen && (
                             <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
                                 <div className="bg-white rounded-lg p-6 shadow-lg max-w-sm w-full">
                                     <h3 className="text-lg font-semibold text-gray-800 mb-4">
                                         Konfirmasi Hapus
                                     </h3>
                                     <p className="text-gray-600 mb-6">
-                                        Apakah kamu yakin ingin menghapus{" "}
-                                        <span className="font-semibold">"data ini"</span>?
+                                        Apakah kamu yakin ingin menghapus data ini?
                                     </p>
                                     <div className="flex justify-end gap-2">
                                         <button
-                                            onClick={() => setIsConfirmDelete(false)}
+                                            onClick={() => {
+                                                setIsDeleteOpen(false)
+                                                setEditId(null)
+                                            }}
                                             className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition"
                                         >
                                             Batal
                                         </button>
                                         <button
+                                            onClick={() => handleDelete()}
                                             className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
                                         >
                                             Ya, Hapus

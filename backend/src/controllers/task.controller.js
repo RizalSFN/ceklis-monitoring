@@ -28,7 +28,7 @@ export const getTask = async (req, res) => {
         const task = await prisma.task.findMany({
             select: {
                 id: true,
-                area: {
+                Area: {
                     select: {
                         id: true,
                         name: true

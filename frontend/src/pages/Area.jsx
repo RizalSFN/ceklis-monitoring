@@ -23,6 +23,7 @@ function Area() {
 
         } catch (error) {
             Swal.fire("Gagal!", "Gagal memuat data area", "error")
+            console.log("Terjadi kesalahan : ", error);
         } finally {
             setIsLoading(false)
         }
@@ -45,6 +46,7 @@ function Area() {
             fetchArea()
         } catch (error) {
             Swal.fire("Gagal!", "Gagal menambahkan data area", "error")
+            console.log("Terjadi kesalahan : ", error);
         }
     }
 

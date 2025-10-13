@@ -13,7 +13,6 @@ function Area() {
     const [isCreateOpen, setIsCreateOpen] = useState(false)
     const [isEditOpen, setIsEditOpen] = useState(false)
     const [isDeleteOpen, setIsDeleteOpen] = useState(false)
-    const [isConfirmDelete, setIsConfirmDelete] = useState(false)
 
     const fetchArea = async () => {
         setIsLoading(true)

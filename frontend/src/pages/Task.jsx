@@ -14,7 +14,7 @@ function Task() {
     const [isEditOpen, setIsEditOpen] = useState(false)
     const [isConfirmDelete, setIsConfirmDelete] = useState(false)
 
-    const fetchTask = async () => {
+    const fetchTask = useCallback(async () => {
         setIsLoading(true)
 
         try {
@@ -26,11 +26,11 @@ function Task() {
         } finally {
             setIsLoading(false)
         }
-    }
+    }, [areaId, name, description])
 
     useEffect(() => {
         fetchTask()
-    })
+    }, [fetchTask])
 
     const handleAdd = async (e) => {
         e.preventDefault()

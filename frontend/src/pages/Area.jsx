@@ -69,6 +69,7 @@ function Area() {
             fetchArea()
         } catch (error) {
             Swal.fire("Gagal!", "Gagal mengedit data area", "error")
+            console.log("Terjadi kesalahan : ", error);
         }
     }
 
@@ -82,6 +83,7 @@ function Area() {
             fetchArea()
         } catch (error) {
             Swal.fire("Gagal!", "Gagal menghapus data area", "error")
+            console.log("Terjadi kesalahan : ", error);
         }
 
     }

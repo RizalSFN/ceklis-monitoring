@@ -14,14 +14,7 @@ function Task() {
     const [isEditOpen, setIsEditOpen] = useState(false)
     const [isConfirmDelete, setIsConfirmDelete] = useState(false)
 
-    // const task = [
-    //     { id: 1, areaId: 5, name: "sabun", description: "isi sabun" },
-    //     { id: 1, areaId: 5, name: "lantai", description: "pel lantai" },
-    //     { id: 1, areaId: 3, name: "meja", description: "bersihkan meja" },
-    //     { id: 1, areaId: 3, name: "piring", description: "cuci piring" },
-    // ]
-
-    const fetchTask = useCallback(async () => {
+    const fetchTask = async () => {
         setIsLoading(true)
 
         try {
@@ -29,14 +22,15 @@ function Task() {
             setTask(res.data.data)
         } catch (error) {
             Swal.fire("Gagal!", "Gagal memuat data task", "error")
+            console.log("Terjadi kesalahan : ", error);
         } finally {
             setIsLoading(false)
         }
-    }, [areaId, name, description])
+    }
 
     useEffect(() => {
         fetchTask()
-    }, [fetchTask])
+    })
 
     const handleAdd = async (e) => {
         e.preventDefault()
@@ -52,6 +46,7 @@ function Task() {
             fetchTask()
         } catch (error) {
             Swal.fire("Gagal!", "Gagal menambah data task", "error")
+            console.log("Terjadi kesalahan : ", error);
         }
     }
 

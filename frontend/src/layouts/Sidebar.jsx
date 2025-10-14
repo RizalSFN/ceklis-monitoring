@@ -28,7 +28,7 @@ export default function Sidebar({ sidebarOpen }) {
             >
                 <div className="flex items-center justify-center h-160 text-blue-600 font-bold text-lg mt-5">
                     <img src={logo} alt="bagikopi-logo" className="w-7 h-7 mr-3" />
-                    <p>Bagi Kopi</p>
+                    <p>Bagi Kopi Soreang</p>
                 </div>
                 <nav className="mt-5">
                     {menus.map((menu, i) => {

@@ -106,7 +106,7 @@ export default function Login() {
                 </form>
 
                 <p className="mt-10 text-center text-sm/6 text-gray-500">
-                    Copyright@
+                    Copyright@BagiKopiSoreang
                     <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                         2025
                     </a>

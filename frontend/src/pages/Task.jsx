@@ -6,9 +6,14 @@ import Swal from "sweetalert2";
 
 function Task() {
     const [task, setTask] = useState([])
+    const [area, setArea] = useState([])
+    const [id, setId] = useState(null)
+    const [areaName, setAreaName] = useState("")
+    const [areaDescription, setAreaDescription] = useState("")
     const [areaId, setAreaId] = useState(null)
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
+    const [editId, setEditId] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [isCreateOpen, setIsCreateOpen] = useState(false)
     const [isEditOpen, setIsEditOpen] = useState(false)
@@ -27,6 +32,16 @@ function Task() {
             setIsLoading(false)
         }
     }, [areaId, name, description])
+
+    const fetchAreaData = async () => {
+        try {
+            const res = await api.get("/api/area", { id, areaName, areaDescription })
+            setArea(res.data.data)
+        } catch (error) {
+            Swal.fire("Gagal!", "Gagal memuat data area", "error")
+            console.log("Terjadi kesalahan : ", error);
+        }
+    }
 
     useEffect(() => {
         fetchTask()
@@ -50,15 +65,15 @@ function Task() {
         }
     }
 
-    // const handleEdit = (id) => {
-    //     alert(`Edit user dengan id: ${id}`);
-    // };
-
-    // const handleDelete = (id) => {
-    //     if (confirm("Yakin mau hapus user ini?")) {
-    //         setArea(area.filter((u) => u.id !== id));
-    //     }
-    // };
+    const handleEdit = async (task) => {
+        setEditId(task.id)
+        setAreaId(task.Area.id)
+        setId(task.Area.id)
+        setName(task.name)
+        setDescription(task.description)
+        fetchAreaData()
+        setIsEditOpen(true)
+    }
 
     return (
         <Layout>
@@ -185,7 +200,7 @@ function Task() {
                                         <td className="p-3">{u.description}</td>
                                         <td className="p-3 flex justify-center gap-2">
                                             <button
-                                                onClick={() => setIsEditOpen(true)}
+                                                onClick={() => handleEdit(u)}
                                                 className="px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">
                                                 <Pencil className="w-4 h-4" />
                                             </button>
@@ -218,13 +233,15 @@ function Task() {
                                             </label>
                                             <select
                                                 id="area"
+                                                value={id}
+                                                onChange={(e) => setId(e.target.value)}
                                                 required
                                                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                             >
                                                 <option value="">Pilih Area</option>
-                                                <option value="admin">Toilet</option>
-                                                <option value="staff">Kitchen</option>
-                                                <option value="user">Mushola</option>
+                                                {area.map((areaData) => (
+                                                    <option key={areaData.id} value={areaData.id}>{areaData.name}</option>
+                                                ))}
                                             </select>
                                         </div>
 
